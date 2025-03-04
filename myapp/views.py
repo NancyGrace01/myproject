@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 from .forms import TaskForm
 
-# Create (Add) Task
+# To Create
 def create_task(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -13,12 +13,12 @@ def create_task(request):
         form = TaskForm()
     return render(request, "task_form.html", {"form": form})
 
-# Read (List) Tasks
+# To Read
 def task_list(request):
     tasks = Task.objects.all()
     return render(request, "task_list.html", {"tasks": tasks})
 
-# Update Task
+# To Update
 def update_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "POST":
@@ -30,7 +30,7 @@ def update_task(request, pk):
         form = TaskForm(instance=task)
     return render(request, "task_form.html", {"form": form})
 
-# Delete Task
+# To Delete
 def delete_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "POST":
